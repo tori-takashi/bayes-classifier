@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 from urllib.parse import quote_plus
-from beautifulsoup4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import sys
 
 app_id = "dj0zaiZpPVd3OE52UEJhZlRVTSZzPWNvbnN1bWVyc2VjcmV0Jng9ZGI-"
@@ -10,11 +10,11 @@ def split( sentence, app_id=app_id, results="ma", filter='1|2|4|5|9|10'):
     ret = []
     sentence = quote_plus(sentence.encode("utf-8"))
     query = "%s?appid=%s&results=%s&uniq_filter=%s&sentence=%s" % \
-            (pageurl,app_id,results,filter,sentence)
-    soup = BeautifulSoup(urlopen(query))
+            (page_url,app_id,results,filter,sentence)
+    soup = BeautifulSoup(urlopen(query), features="lxml")
     try:
         return [l.surface.string for l in soup.ma_result.word_list]
     except:
         return []
 
-split(sys.argv[1])
+print(split(sys.argv[1]))
