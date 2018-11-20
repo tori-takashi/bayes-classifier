@@ -16,5 +16,3 @@ def split( sentence, app_id=app_id, results="ma", filter='1|2|4|5|9|10'):
         return [l.surface.string for l in soup.ma_result.word_list]
     except:
         return []
-
-print(split(sys.argv[1]))
