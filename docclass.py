@@ -78,3 +78,8 @@ comet.magnum-f.info/top/
 #ペイターズ 
 #パパ活""", "good")
 
+class naivebayes(classifier):
+  def doc_probability(self, item, category):
+    p=1
+    for feature in features: p *= self.weighted_probability(feature, category, self.feature_probability)
+    return p
